@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: talep-bot
+
+  datasource:
+    url: jdbc:h2:file:./data/talepbot;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+# --- LangChain4j / Anthropic ---
+langchain4j:
+  anthropic:
+    chat-model:
+      api-key: demo
+      model-name: claude-sonnet-4-20250514
+      max-tokens: 16384
+      temperature: 0.3
+      timeout: PT5M
+      log-requests: true
+      log-responses: true
+
+# --- GitHub Tool Config ---
+github:
+  token: ${GITHUB_TOKEN:}
+  default-owner: ${GITHUB_OWNER:}
+  default-repo: ${GITHUB_REPO:}
+
+# --- Pipeline Config ---
+pipeline:
+  developer-tester-max-iterations: 3
+  agent-delay-seconds: 0
+
+logging:
+  level:
+    com.atmosware.talepbot: DEBUG
+    dev.langchain4j: DEBUG

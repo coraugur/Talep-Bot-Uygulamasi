@@ -1,0 +1,25 @@
+# Environment & secrets
+.env
+*.env
+
+# Database
+data/
+
+# Java / Maven
+talep-bot/target/
+talep-bot/data/
+talep-bot/*.iml
+talep-bot/.idea/
+
+# Node / React
+talep-bot-ui/node_modules/
+talep-bot-ui/dist/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+Thumbs.db
+.DS_Store
